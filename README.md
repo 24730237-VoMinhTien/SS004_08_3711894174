@@ -5,6 +5,7 @@
 
 Game hoạt động theo vòng lặp (game loop): nhận lệnh điều khiển → cập nhật trạng thái → vẽ lại giao diện.
 
+https://github.com/24730237-VoMinhTien/SS004_08_3711894174/blob/PhuNam/GiaoDien/image/img2.jpg
 ---
 
 ## II. Cấu trúc mã nguồn
