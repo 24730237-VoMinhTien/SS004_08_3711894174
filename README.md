@@ -65,7 +65,7 @@ Trò chơi chạy theo **game loop** liên tục: nhận input → cập nhật 
 
 ---
 
-## VI. Các cải tiến và mở rộng
+## VI. Các cải tiến và mở rộng (Ý tưởng chưa thực hiện) 
 
 - **Tốc độ thay đổi**: Bạn có thể thêm tính năng thay đổi tốc độ rắn dựa trên cấp độ, giúp trò chơi thêm thử thách.
 - **Âm thanh**: Thêm âm thanh khi ăn mồi, thắng cuộc hoặc thua cuộc để làm cho trò chơi thêm phần thú vị.
