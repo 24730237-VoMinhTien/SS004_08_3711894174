@@ -31,7 +31,18 @@ public:
         ran.length = 1;
         score = 0;
     }
-    void Menu();
+
+    void start();
+    void drawFrame();
+    void createSnake();
+    void drawSnake();
+    void move(int x, int y);
+    bool isGameOver();
+    void drawFood();
+    void eatFood();
+    bool checkFood();
+
+    void menu();
 };
 
 void gotoxy(int column, int line)
@@ -47,11 +58,11 @@ void gotoxy(int column, int line)
 int main()
 {
     CONRAN app;
-    app.Menu();
+    app.menu();
     return 0;
 }
 
-void CONRAN::Menu()
+void CONRAN::menu()
 {
     do
     {
@@ -71,4 +82,32 @@ void CONRAN::Menu()
         case '3':
         }
     } while (true);
+}
+
+void CONRAN::start()
+{
+}
+void CONRAN::drawFrame()
+{
+}
+void CONRAN::createSnake()
+{
+}
+void CONRAN::drawSnake()
+{
+}
+void CONRAN::move(int x, int y)
+{
+}
+bool CONRAN::isGameOver()
+{
+}
+void CONRAN::drawFood()
+{
+}
+void CONRAN::eatFood()
+{
+}
+bool CONRAN::checkFood()
+{
 }
