@@ -50,6 +50,7 @@ public:
 int main()
 {
     CONRAN ran;
+    ran.TaoRan();
     ran.VeRan();
     return 0;
 }
@@ -74,20 +75,26 @@ void CONRAN::VeRan()
         gotoxy(ran.body[i].x, ran.body[i].y);
         if (i == 0)
         {
+            SetColor(12); // Màu đỏ cho đầu rắn
             cout << (char)254;
         }
         else
         {
+            SetColor(10); // Màu xanh lá cho thân
             if (ran.body[i].x == ran.body[i - 1].x)
             {
-                cout << (char)186;             }
+                cout << (char)186;  //thân dọc
+            }
             else if (ran.body[i].y == ran.body[i - 1].y)
             {
-                cout << (char)205;             }
+                cout << (char)205;  //Thân ngang
+            }
             else
             {
-                cout << (char)177;             }
+                cout << (char)177;  //Thân chung
+            }
         }
+        SetColor(7); // Quay lại màu mặc định
     }
 }
 
