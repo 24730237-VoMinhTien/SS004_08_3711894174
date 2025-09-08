@@ -167,3 +167,9 @@ void CONRAN::eatFood()
 bool CONRAN::checkFood()
 {
 }
+
+void CONRAN::Score()
+{
+    score += 1;
+    cout << "Score: " << score << endl;
+}
