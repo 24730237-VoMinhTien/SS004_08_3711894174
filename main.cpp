@@ -175,6 +175,7 @@ void CONRAN::Score()
         gotoxy(107, 2);
         SetColor(13);
         score += 1;
-        cout << "Score: " << score;
+        cout << "Score: " << score << "   ";
+        SetColor(7);
     }
 }
