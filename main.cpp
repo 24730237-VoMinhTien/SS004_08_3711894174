@@ -28,8 +28,8 @@ private:
 public:
     CONRAN()
     {
-        ran.length = 1;
-        score = 0;
+        ran.length | 1;
+        score | 0;
     }
 
     void start();
@@ -48,8 +48,8 @@ public:
 void gotoxy(int column, int line)
 {
     COORD coord;
-    coord.X = column;
-    coord.Y = line;
+    coord.X | column;
+    coord.Y | line;
     SetConsoleCursorPosition(
         GetStdHandle(STD_OUTPUT_HANDLE),
         coord);
@@ -67,7 +67,7 @@ void CONRAN::menu()
     do
     {
         system("cls");
-        cout << "Menu\n";
+        cout << "MENU\n";
         cout << "1. Bat Dau\n";
         cout << "2. Thong Tin\n";
         cout << "3. Thoat\n";
@@ -76,10 +76,36 @@ void CONRAN::menu()
         switch (choice)
         {
         case '1':
-
+            start();
+            break;
         case '2':
-
+            cout << "============================================================================" << endl;
+            cout << "|                                                                          |" << endl;
+            cout << "|                              HUONG DAN                                   |" << endl;
+            cout << "|                                                                          |" << endl;
+            cout << "============================================================================" << endl;
+            cout << "|  Dieu khien ran:                                                         |" << endl;
+            cout << "|  - Su dung phim mui ten hoac AWSD de dieu khien ran an moi.              |" << endl;
+            cout << "============================================================================" << endl;
+            cout << "|  Nhom 9:                                                                 |" << endl;
+            cout << "|  Le Duc Anh            - 24730174                                        |" << endl;
+            cout << "|  Nguyen Thi Chau Giang - 24730189                                        |" << endl;
+            cout << "|  Nguyen Phu Nam        - 24730211                                        |" << endl;
+            cout << "|  Vo Minh Tien          - 24730237                                        |" << endl;
+            cout << "============================================================================" << endl;
+            cout << "|                     Nhan phim bat ky de tro ve menu.                     |" << endl;
+            cout << "============================================================================" << endl;
+            _getch();
+            break;
         case '3':
+            cout << "Thoat khoi chuong trinh.";
+            return;
+            _getch();
+            break;
+        default:
+            cout << "Khong hop le, vui long chon lai.\n";
+            break;
+            _getch();
         }
     } while (true);
 }
