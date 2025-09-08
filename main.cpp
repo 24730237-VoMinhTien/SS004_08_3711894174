@@ -170,7 +170,7 @@ bool CONRAN::checkFood()
 
 void CONRAN::Score()
 {
-    if (ran.body[0].x == ran.body[0].x && ran.body[0].y == ran.body[0].y)
+    if (ran.body[0].x == food.x && ran.body[0].y == food.y)
     {
         score += 1;
         cout << "Score: " << score << endl;
