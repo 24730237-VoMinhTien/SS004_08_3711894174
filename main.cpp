@@ -19,7 +19,7 @@ void SetColor(int color)
     SetConsoleTextAttribute(hConsole, color);
 }
 
-//Hàm tọa đõ xy
+// Hàm tọa đõ xy
 void gotoxy(int column, int line)
 {
     COORD coord;
@@ -69,7 +69,7 @@ int main()
     return 0;
 }
 
-//Tạo ra con rắn tại vị trí xy
+// Tạo ra con rắn tại vị trí xy
 void CONRAN::TaoRan()
 {
     int x_head = 50;
@@ -81,7 +81,7 @@ void CONRAN::TaoRan()
     }
 }
 
-//Cho hình dạng khởi đầy của con rắn
+// Cho hình dạng khởi đầy của con rắn
 void CONRAN::VeRan()
 {
     for (int i = 0; i < ran.length; i++)
@@ -97,20 +97,17 @@ void CONRAN::VeRan()
             SetColor(10); // Màu xanh lá cho thân
             if (ran.body[i].x == ran.body[i - 1].x)
             {
-                cout << (char)186;  //thân dọc
+                cout << (char)186; // thân dọc
             }
             else if (ran.body[i].y == ran.body[i - 1].y)
             {
-                cout << (char)205;  //Thân ngang
+                cout << (char)205; // Thân ngang
             }
             else
             {
-                cout << (char)177;  //Thân chung
+                cout << (char)177; // Thân chung
             }
         }
         SetColor(7); // Quay lại màu mặc định
     }
 }
-
-
-
