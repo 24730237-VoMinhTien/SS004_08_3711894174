@@ -19,6 +19,17 @@ void SetColor(int color)
     SetConsoleTextAttribute(hConsole, color);
 }
 
+//Hàm tọa đõ xy
+void gotoxy(int column, int line)
+{
+    COORD coord;
+    coord.X = column;
+    coord.Y = line;
+    SetConsoleCursorPosition(
+        GetStdHandle(STD_OUTPUT_HANDLE),
+        coord);
+}
+
 class CONRAN
 {
 private:
@@ -44,7 +55,9 @@ public:
         score = 0;
     }
 
+    void TaoRan();
     void VeRan();
+    void DiChuyen(int x, int y);
 };
 
 int main()
@@ -52,6 +65,7 @@ int main()
     CONRAN ran;
     ran.TaoRan();
     ran.VeRan();
+    ran.TaoRan();
     return 0;
 }
 
