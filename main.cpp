@@ -5,6 +5,11 @@
 
 using namespace std;
 
+#define MAX_RIGHT 104
+#define MAX_LEFT 10
+#define MAX_ABOVE 1
+#define MAX_UNDER 25
+
 void gotoxy(int column, int line);
 
 class CONRAN
@@ -76,7 +81,9 @@ void CONRAN::menu()
         switch (choice)
         {
         case '1':
+
             start();
+            drawFrame();
             break;
         case '2':
             cout << "============================================================================" << endl;
@@ -127,12 +134,23 @@ void CONRAN::move(int x, int y)
 }
 bool CONRAN::isGameOver()
 {
+    if (ran.body[0].x == MAX_LEFT || ran.body[0].x == MAX_RIGHT || ran.body[0].y == MAX_ABOVE || ran.body[0].y == MAX_UNDER)
+        return true;
+
+    for (int i = 1; i < ran.length; i++)
+    {
+        if (ran.body[i].x == ran.body[0].x && ran.body[i].y == ran.body[0].y)
+            return true;
+    }
+    return false;
+
 }
 void CONRAN::drawFood()
 {
 }
 void CONRAN::eatFood()
 {
+
 	if (ran.body[0].x == food.x && ran.body[0].y == food.y)
     {
         ran.length++;
@@ -143,6 +161,7 @@ void CONRAN::eatFood()
         } while (KiemTraMoi());
         VeMoi();
     }
+
 }
 bool CONRAN::checkFood()
 {
