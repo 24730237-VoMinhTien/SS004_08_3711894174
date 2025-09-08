@@ -46,6 +46,7 @@ public:
     void drawFood();
     void eatFood();
     bool checkFood();
+    void Score();
 
     void menu();
 };
@@ -160,6 +161,7 @@ bool CONRAN::isGameOver()
 }
 void CONRAN::drawFood()
 {
+    food.x, food.y;
 }
 void CONRAN::eatFood()
 {
@@ -179,3 +181,4 @@ void CONRAN::Score()
         SetColor(7); // Reset màu
     }
 }
+
