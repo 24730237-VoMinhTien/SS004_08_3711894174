@@ -173,8 +173,8 @@ void CONRAN::Score()
     if (ran.body[0].x == food.x && ran.body[0].y == food.y)
     {
         gotoxy(107, 2);
+        SetColor(13);
         score += 1;
         cout << "Score: " << score;
     }
 }
-
