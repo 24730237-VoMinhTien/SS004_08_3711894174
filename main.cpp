@@ -1,16 +1,34 @@
 #include <iostream>
 #include <windows.h>
 #include <cstdlib>
+#include <string>
 #include <conio.h>
-
-using namespace std;
-
+#include <thread>
 #define MAX_RIGHT 104
 #define MAX_LEFT 10
 #define MAX_ABOVE 1
 #define MAX_UNDER 25
 
-void gotoxy(int column, int line);
+void gotoxy(int column, int line); // Hàm goto
+using namespace std;
+
+// Hàm thiết lập màu sắc
+void SetColor(int color)
+{
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, color);
+}
+
+// Hàm tọa độ xy
+void gotoxy(int column, int line)
+{
+    COORD coord;
+    coord.X = column;
+    coord.Y = line;
+    SetConsoleCursorPosition(
+        GetStdHandle(STD_OUTPUT_HANDLE),
+        coord);
+}
 
 class CONRAN
 {
@@ -23,7 +41,7 @@ private:
     struct Ran
     {
         Point body[100];
-        int length;
+        int length; // Độ dài rắn
     };
 
     Ran ran;
@@ -32,8 +50,8 @@ private:
 
 public:
     CONRAN()
-    {
-        ran.length = 1;
+    { // Hàm khởi tạo giá trị ban đầu
+        ran.length = 3;
         score = 0;
     }
 
@@ -46,19 +64,8 @@ public:
     void drawFood();
     void eatFood();
     bool checkFood();
-
     void menu();
 };
-
-void gotoxy(int column, int line)
-{
-    COORD coord;
-    coord.X = column;
-    coord.Y = line;
-    SetConsoleCursorPosition(
-        GetStdHandle(STD_OUTPUT_HANDLE),
-        coord);
-}
 
 int main()
 {
@@ -69,6 +76,7 @@ int main()
 
 void CONRAN::menu()
 {
+    char choice;
     do
     {
         system("cls");
@@ -76,8 +84,9 @@ void CONRAN::menu()
         cout << "1. Bat Dau\n";
         cout << "2. Thong Tin\n";
         cout << "3. Thoat\n";
+        cout << "Lua chon: ";
+        choice = _getch();
 
-        char choice = _getch();
         switch (choice)
         {
         case '1':
@@ -105,12 +114,10 @@ void CONRAN::menu()
         case '3':
             cout << "Thoat khoi chuong trinh.";
             return;
-            _getch();
-            break;
         default:
             cout << "Khong hop le, vui long chon lai.\n";
-            break;
             _getch();
+            break;
         }
     } while (true);
 }
@@ -120,6 +127,7 @@ void CONRAN::start()
     system("cls");
     drawFrame();
 }
+
 void CONRAN::drawFrame()
 {
     for (int i = MAX_LEFT; i <= MAX_RIGHT; i++)
@@ -137,15 +145,52 @@ void CONRAN::drawFrame()
         cout << (char)222;
     }
 }
+
 void CONRAN::createSnake()
 {
+    int x_head = 50;
+    int y_head = 10;
+    for (int i = 0; i < ran.length; i++)
+    {
+        ran.body[i].x = x_head--;
+        ran.body[i].y = y_head;
+    }
 }
+
 void CONRAN::drawSnake()
 {
+    for (int i = 0; i < ran.length; i++)
+    {
+        gotoxy(ran.body[i].x, ran.body[i].y);
+        if (i == 0)
+        {
+            SetColor(12); // Màu đỏ cho đầu rắn
+            cout << (char)254;
+        }
+        else
+        {
+            SetColor(10); // Màu xanh lá cho thân
+            if (ran.body[i].x == ran.body[i - 1].x)
+            {
+                cout << (char)186; // thân dọc
+            }
+            else if (ran.body[i].y == ran.body[i - 1].y)
+            {
+                cout << (char)205; // Thân ngang
+            }
+            else
+            {
+                cout << (char)177; // Thân chung
+            }
+        }
+        SetColor(7); // Quay lại màu mặc định
+    }
 }
+
 void CONRAN::move(int x, int y)
 {
 }
+
 bool CONRAN::isGameOver()
 {
     if (ran.body[0].x == MAX_LEFT || ran.body[0].x == MAX_RIGHT || ran.body[0].y == MAX_ABOVE || ran.body[0].y == MAX_UNDER)
@@ -158,12 +203,16 @@ bool CONRAN::isGameOver()
     }
     return false;
 }
+
 void CONRAN::drawFood()
 {
 }
+
 void CONRAN::eatFood()
 {
 }
+
 bool CONRAN::checkFood()
 {
+    return false;
 }
