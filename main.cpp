@@ -33,8 +33,8 @@ private:
 public:
     CONRAN()
     {
-        ran.length | 1;
-        score | 0;
+        ran.length = 1;
+        score = 0;
     }
 
     void start();
@@ -53,8 +53,8 @@ public:
 void gotoxy(int column, int line)
 {
     COORD coord;
-    coord.X | column;
-    coord.Y | line;
+    coord.X = column;
+    coord.Y = line;
     SetConsoleCursorPosition(
         GetStdHandle(STD_OUTPUT_HANDLE),
         coord);
