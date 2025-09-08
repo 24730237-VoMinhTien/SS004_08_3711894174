@@ -161,7 +161,7 @@ bool CONRAN::isGameOver()
 }
 void CONRAN::drawFood()
 {
-    food.x, food.y;
+    cout << food.x << food.y;
 }
 void CONRAN::eatFood()
 {
