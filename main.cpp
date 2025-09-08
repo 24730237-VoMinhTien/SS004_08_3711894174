@@ -1,5 +1,51 @@
 #include <iostream>
+#include <windows.h>
+#include <cstdlib>
+#include <string>
+#include <conio.h>
+#include <thread>
+#define MAX_RIGHT 104
+#define MAX_LEFT 10
+#define MAX_ABOVE 1
+#define MAX_UNDER 25
+
+void gotoxy(int column, int line); // Hàm goto
 using namespace std;
+
+class CONRAN
+{
+private:
+    struct Point
+    {
+        int x, y;
+    };
+
+    struct Ran
+    {
+        Point body[100];
+        int length; // Độ dài rắn
+    };
+
+    Ran ran;
+    int score;
+    Point food;
+
+public:
+    CONRAN()
+    { // Hàm khởi tạo giá trị ban đầu
+        ran.length = 3;
+        score = 0;
+    }
+
+    void VeRan();
+};
+
+int main()
+{
+    CONRAN ran;
+    ran.VeRan();
+    return 0;
+}
 
 void CONRAN::VeRan()
 {
@@ -26,8 +72,4 @@ void CONRAN::VeRan()
 }
 
 
-int main()
-{
 
-    return 0;
-}
