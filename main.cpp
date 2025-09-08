@@ -12,6 +12,13 @@
 void gotoxy(int column, int line); // Hàm goto
 using namespace std;
 
+// Hàm thiết lập màu sắc
+void SetColor(int color)
+{
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, color);
+}
+
 class CONRAN
 {
 private:
@@ -47,6 +54,19 @@ int main()
     return 0;
 }
 
+//Tạo ra con rắn tại vị trí xy
+void CONRAN::TaoRan()
+{
+    int x_head = 50;
+    int y_head = 10;
+    for (int i = 0; i < ran.length; i++)
+    {
+        ran.body[i].x = x_head--;
+        ran.body[i].y = y_head;
+    }
+}
+
+//Cho hình dạng khởi đầy của con rắn
 void CONRAN::VeRan()
 {
     for (int i = 0; i < ran.length; i++)
