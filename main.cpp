@@ -19,7 +19,7 @@ void SetColor(int color)
     SetConsoleTextAttribute(hConsole, color);
 }
 
-// Hàm tọa đõ xy
+// Hàm tọa độ xy
 void gotoxy(int column, int line)
 {
     COORD coord;
@@ -55,22 +55,98 @@ public:
         score = 0;
     }
 
-    void TaoRan();
-    void VeRan();
-    void DiChuyen(int x, int y);
+    void start();
+    void drawFrame();
+    void createSnake();
+    void drawSnake();
+    void move(int x, int y);
+    bool isGameOver();
+    void drawFood();
+    void eatFood();
+    bool checkFood();
+    void menu();
 };
 
 int main()
 {
-    CONRAN ran;
-    ran.TaoRan();
-    ran.VeRan();
-    ran.TaoRan();
+    CONRAN app;
+    app.menu();
     return 0;
 }
 
-// Tạo ra con rắn tại vị trí xy
-void CONRAN::TaoRan()
+void CONRAN::menu()
+{
+    char choice;
+    do
+    {
+        system("cls");
+        cout << "MENU\n";
+        cout << "1. Bat Dau\n";
+        cout << "2. Thong Tin\n";
+        cout << "3. Thoat\n";
+        cout << "Lua chon: ";
+        choice = _getch();
+
+        switch (choice)
+        {
+        case '1':
+            start();
+            break;
+        case '2':
+            cout << "============================================================================" << endl;
+            cout << "|                                                                          |" << endl;
+            cout << "|                              HUONG DAN                                   |" << endl;
+            cout << "|                                                                          |" << endl;
+            cout << "============================================================================" << endl;
+            cout << "|  Dieu khien ran:                                                         |" << endl;
+            cout << "|  - Su dung phim mui ten hoac AWSD de dieu khien ran an moi.              |" << endl;
+            cout << "============================================================================" << endl;
+            cout << "|  Nhom 9:                                                                 |" << endl;
+            cout << "|  Le Duc Anh            - 24730174                                        |" << endl;
+            cout << "|  Nguyen Thi Chau Giang - 24730189                                        |" << endl;
+            cout << "|  Nguyen Phu Nam        - 24730211                                        |" << endl;
+            cout << "|  Vo Minh Tien          - 24730237                                        |" << endl;
+            cout << "============================================================================" << endl;
+            cout << "|                     Nhan phim bat ky de tro ve menu.                     |" << endl;
+            cout << "============================================================================" << endl;
+            _getch();
+            break;
+        case '3':
+            cout << "Thoat khoi chuong trinh.";
+            return;
+        default:
+            cout << "Khong hop le, vui long chon lai.\n";
+            _getch();
+            break;
+        }
+    } while (true);
+}
+
+void CONRAN::start()
+{
+    system("cls");
+    drawFrame();
+}
+
+void CONRAN::drawFrame()
+{
+    for (int i = MAX_LEFT; i <= MAX_RIGHT; i++)
+    {
+        gotoxy(i, MAX_ABOVE);
+        cout << (char)220;
+        gotoxy(i, MAX_UNDER + 1);
+        cout << (char)223;
+    }
+    for (int i = MAX_ABOVE + 1; i <= MAX_UNDER; i++)
+    {
+        gotoxy(MAX_LEFT, i);
+        cout << (char)221;
+        gotoxy(MAX_RIGHT, i);
+        cout << (char)222;
+    }
+}
+
+void CONRAN::createSnake()
 {
     int x_head = 50;
     int y_head = 10;
@@ -81,8 +157,7 @@ void CONRAN::TaoRan()
     }
 }
 
-// Cho hình dạng khởi đầy của con rắn
-void CONRAN::VeRan()
+void CONRAN::drawSnake()
 {
     for (int i = 0; i < ran.length; i++)
     {
@@ -110,4 +185,34 @@ void CONRAN::VeRan()
         }
         SetColor(7); // Quay lại màu mặc định
     }
+}
+
+void CONRAN::move(int x, int y)
+{
+}
+
+bool CONRAN::isGameOver()
+{
+    if (ran.body[0].x == MAX_LEFT || ran.body[0].x == MAX_RIGHT || ran.body[0].y == MAX_ABOVE || ran.body[0].y == MAX_UNDER)
+        return true;
+
+    for (int i = 1; i < ran.length; i++)
+    {
+        if (ran.body[i].x == ran.body[0].x && ran.body[i].y == ran.body[0].y)
+            return true;
+    }
+    return false;
+}
+
+void CONRAN::drawFood()
+{
+}
+
+void CONRAN::eatFood()
+{
+}
+
+bool CONRAN::checkFood()
+{
+    return false;
 }
