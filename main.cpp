@@ -81,7 +81,7 @@ void CONRAN::menu()
         switch (choice)
         {
         case '1':
-            drawFrame();
+            start();
             break;
         case '2':
             cout << "============================================================================" << endl;
@@ -117,9 +117,25 @@ void CONRAN::menu()
 
 void CONRAN::start()
 {
+    system("cls");
+    drawFrame();
 }
 void CONRAN::drawFrame()
 {
+    for (int i = MAX_LEFT; i <= MAX_RIGHT; i++)
+    {
+        gotoxy(i, MAX_ABOVE);
+        cout << (char)220;
+        gotoxy(i, MAX_UNDER + 1);
+        cout << (char)223;
+    }
+    for (int i = MAX_ABOVE + 1; i <= MAX_UNDER; i++)
+    {
+        gotoxy(MAX_LEFT, i);
+        cout << (char)221;
+        gotoxy(MAX_RIGHT, i);
+        cout << (char)222;
+    }
 }
 void CONRAN::createSnake()
 {
