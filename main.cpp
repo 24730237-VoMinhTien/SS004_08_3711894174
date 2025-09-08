@@ -161,8 +161,10 @@ bool CONRAN::isGameOver()
 }
 void CONRAN::drawFood()
 {
+    SetColor(14); // Vàng cho quả
     gotoxy(food.x, food.y);
-    cout << (char)42; 
+    cout << (char)42;
+    SetColor(7); // Reset màu
 }
 void CONRAN::eatFood()
 {
