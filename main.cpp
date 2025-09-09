@@ -64,9 +64,6 @@ int main()
 
     //Hàm test di chuyển
     ran.testDiChuyen();
-
-
-
     return 0;
 }
 
@@ -138,6 +135,17 @@ void getChar(int &huong)
             {
                 huong = 2;
             }
+        }
+                else
+        {
+            if ((c == 'w') && huong != 0)
+                huong = 1;
+            else if ((c == 's') && huong != 1)
+                huong = 0;
+            else if ((c == 'a') && huong != 2)
+                huong = 3;
+            else if ((c == 'd') && huong != 3)
+                huong = 2;
         }
     }
 }
