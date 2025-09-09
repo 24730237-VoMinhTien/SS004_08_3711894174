@@ -1,9 +1,6 @@
 #include <iostream>
 #include <windows.h>
-#include <cstdlib>
-#include <string>
 #include <conio.h>
-#include <thread>
 #define MAX_RIGHT 104
 #define MAX_LEFT 10
 #define MAX_ABOVE 1
@@ -20,14 +17,12 @@ void SetColor(int color)
 }
 
 //Hàm tọa đõ xy
-void gotoxy(int column, int line)
+void gotoxy(int x, int y)
 {
-    COORD coord;
-    coord.X = column;
-    coord.Y = line;
-    SetConsoleCursorPosition(
-        GetStdHandle(STD_OUTPUT_HANDLE),
-        coord);
+    HANDLE hConsoleOutput;
+    COORD Cursor_an_Pos = {x - 1, y - 1};
+    hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleCursorPosition(hConsoleOutput, Cursor_an_Pos);
 }
 
 class CONRAN
@@ -58,6 +53,7 @@ public:
     void TaoRan();
     void VeRan();
     void DiChuyen(int x, int y);
+    void testDiChuyen();
 };
 
 int main()
@@ -65,7 +61,12 @@ int main()
     CONRAN ran;
     ran.TaoRan();
     ran.VeRan();
-    ran.TaoRan();
+
+    //Hàm test di chuyển
+    ran.testDiChuyen();
+
+
+
     return 0;
 }
 
@@ -112,5 +113,61 @@ void CONRAN::VeRan()
     }
 }
 
+//Điều hướng rắn
+void getChar(int &huong)
+{
+    if (_kbhit())
+    {
+        char c = _getch();
+        if (c == -32)
+        { // Kiểm tra phím mũi tên
+            c = _getch();
+            if (c == 72 && huong != 0)
+            {
+                huong = 1;
+            }
+            else if (c == 80 && huong != 1)
+            {
+                huong = 0;
+            }
+            else if (c == 75 && huong != 2)
+            {
+                huong = 3;
+            }
+            else if (c == 77 && huong != 3)
+            {
+                huong = 2;
+            }
+        }
+    }
+}
 
+void CONRAN::testDiChuyen()
+{
+    int x = ran.body[0].x;
+    int y = ran.body[0].y;
+    int huong = 2; // ban đầu đi sang phải
 
+    cout << x << " " << y << endl;
+    while (true)
+    {
+         getChar(huong);
+
+         if (huong == 0)
+             y++;
+         else if (huong == 1)
+             y--;
+         else if (huong == 2)
+             x++;
+         else if (huong == 3)
+             x--;
+
+        //Cập nhật phần đầu rắn
+        ran.body[0].x = x;
+        ran.body[0].y = y;
+
+        //Vẽ lại rắn sau khi đã thay đổi xy
+        VeRan();
+        Sleep(500);
+    }
+}
