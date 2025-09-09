@@ -15,25 +15,23 @@
     git checkout main
     ```
 
-2. **Merge nhánh cần thiết vào `main`:**
+2. **Merge nhánh `ChauGiang/ChucNang` vào `main`:**
     ```bash
-    git merge <tên_nhánh>
+    git merge ChauGiang/ChucNang
     ```
     - Nếu có conflict, mở các file bị conflict, chỉnh sửa và giải quyết xung đột.
     - Sau khi xử lý xong, đánh dấu conflict đã được giải quyết:
-
-    ```bash
-    git add <file_bị_conflict>
-    ```
+      ```bash
+      git add <file_bị_conflict>
+      ```
     - Hoàn tất merge:
+      ```bash
+      git commit
+      ```
 
+3. **Cập nhật nhánh `PhuNam/GiaoDien` với thay đổi từ `main`:**
     ```bash
-    git commit
-    ```
-
-3. **Cập nhật nhánh làm việc với thay đổi từ `main`:**
-    ```bash
-    git checkout <tên_nhánh_làm_việc>
+    git checkout PhuNam/GiaoDien
     git pull origin main
     ```
 
@@ -44,3 +42,5 @@
   ```
 - Đảm bảo code được kiểm tra kỹ trước khi merge vào `main`.
 - Thường xuyên cập nhật nhánh làm việc với nhánh `main` để tránh xung đột lớn.
+
+Chúc bạn làm việc hiệu quả!
