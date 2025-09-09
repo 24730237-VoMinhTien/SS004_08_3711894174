@@ -21,13 +21,15 @@
     ```
     - Nếu có conflict, mở các file bị conflict, chỉnh sửa và giải quyết xung đột.
     - Sau khi xử lý xong, đánh dấu conflict đã được giải quyết:
-      ```bash
-      git add <file_bị_conflict>
-      ```
+
+    ```bash
+    git add <file_bị_conflict>
+    ```
     - Hoàn tất merge:
-      ```bash
-      git commit
-      ```
+
+    ```bash
+    git commit
+    ```
 
 3. **Cập nhật nhánh làm việc với thay đổi từ `main`:**
     ```bash
