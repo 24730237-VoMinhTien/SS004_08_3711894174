@@ -142,6 +142,25 @@ void getChar(int &huong)
     }
 }
 
+//Tách hàm di chuyển
+void CONRAN::DiChuyen(int x, int y)
+{
+    //Thay đổi phần thân rắn
+    // Lưu phần cuối của thân rắn để xóa sau khi di chuyển
+    Point prevTail = ran.body[ran.length - 1];
+
+    // Dời thân rắn từ cuối về phía trước
+    for (int i = ran.length - 1; i > 0; i--)
+    {
+        ran.body[i] = ran.body[i - 1];
+    }
+
+    //Thay đổi phần đầu rắn
+    // Cập nhật phần đầu rắn
+    ran.body[0].x = x;
+    ran.body[0].y = y;
+}
+
 void CONRAN::testDiChuyen()
 {
     int x = ran.body[0].x;
@@ -161,27 +180,13 @@ void CONRAN::testDiChuyen()
          else if (huong == 3)
              x--;
 
-    //Thay đổi phần thân rắn
         // Xóa phần cuối của thân
         gotoxy(ran.body[ran.length - 1].x, ran.body[ran.length - 1].y);
         cout << " ";
 
-        // Lưu phần cuối của thân rắn để xóa sau khi di chuyển
-        Point prevTail = ran.body[ran.length - 1];
-
-        // Dời thân rắn từ cuối về phía trước
-        for (int i = ran.length - 1; i > 0; i--)
-        {
-            ran.body[i] = ran.body[i - 1];
-        }
-
-    //Thay đổi phần đầu rắn
-        //Cập nhật phần đầu rắn
-        ran.body[0].x = x;
-        ran.body[0].y = y;
-
+        DiChuyen(x, y);
         //Vẽ lại rắn sau khi đã thay đổi xy
         VeRan();
-        Sleep(500);
+        Sleep(100); //Tăng tốc độ của rắn
     }
 }
