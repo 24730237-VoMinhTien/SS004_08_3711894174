@@ -1,52 +1,22 @@
-# Rắn Săn Mồi - Nhóm 8
+### Hướng Dẫn Chơi
 
-## Quy Trình Làm Việc Với Các Nhánh
+Khi bắt đầu, bạn sẽ thấy giao diện **Menu** chính của trò chơi.
 
-### 1. Các Nhánh Hiện Có
-- **main**: Nhánh chính.
-- **PhuNam/GiaoDien**: Nhánh giao diện do Phú Nam phát triển.
-- **ChauGiang/ChucNang**: Nhánh chức năng do Châu Giang phát triển.
-- **DucAnh/ChucNang**: Nhánh chức năng do Đức Anh phát triển.
-- **MinhTien/ChucNang**: Nhánh chức năng do Minh Tiến phát triển.
+#### Điều Khiển
+- Sử dụng các phím mũi tên hoặc phím **W/A/S/D** trên bàn phím để điều khiển hướng di chuyển của rắn.
 
----
+#### Mục Tiêu
+- Hướng dẫn rắn ăn các mẩu thức ăn xuất hiện ngẫu nhiên trên màn hình.
+- Mỗi lần ăn thức ăn, rắn sẽ dài hơn và điểm số của bạn sẽ tăng lên.
 
-### 2. Hướng Dẫn Merge Và Xử Lý Conflict
+#### Kết Thúc Trò Chơi
+- Trò chơi kết thúc nếu rắn va vào tường hoặc chính cơ thể của nó.
+- Sau khi kết thúc, điểm số của bạn sẽ được hiển thị. Bạn có thể:
+- Quay lại menu để chơi lại.
 
-#### Bước 1: Chuyển Sang Nhánh `main`
-```bash
-git checkout main
-```
-
-#### Bước 2: Merge Nhánh `ChauGiang/ChucNang` Vào `main`
-```bash
-git merge ChauGiang/ChucNang
-```
-- Nếu có conflict:
-    - Mở các file bị conflict, chỉnh sửa và giải quyết xung đột.
-    - Đánh dấu conflict đã được giải quyết:
-        ```bash
-        git add <file_bị_conflict>
-        ```
-    - Hoàn tất merge:
-        ```bash
-        git commit
-        ```
-
-#### Bước 3: Cập Nhật Nhánh `PhuNam/GiaoDien` Với Thay Đổi Từ `main`
-```bash
-git checkout PhuNam/GiaoDien
-git pull origin main
-```
-
----
-
-### 3. Lưu Ý
-- Luôn kiểm tra trạng thái nhánh trước khi thực hiện các thao tác:
-    ```bash
-    git status
-    ```
-- Đảm bảo code được kiểm tra kỹ trước khi merge vào `main`.
-- Thường xuyên cập nhật nhánh làm việc với nhánh `main` để tránh xung đột lớn.
-
----
+#### Giao Diện Menu
+![Menu](img/menu.png)
+- **Chọn 1**: Bắt đầu trò chơi.
+- **Chọn 2**: Xem hướng dẫn và thông tin thành viên nhóm 8.
+    ![Thông Tin](img/info.png)
+- **Chọn 3**: Thoát khỏi trò chơi.

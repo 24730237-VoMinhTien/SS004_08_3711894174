@@ -112,7 +112,7 @@ void CONRAN::menu()
             cout << "|  Dieu khien ran:                                                         |" << endl;
             cout << "|  - Su dung phim mui ten hoac AWSD de dieu khien ran an moi.              |" << endl;
             cout << "============================================================================" << endl;
-            cout << "|  Nhom 9:                                                                 |" << endl;
+            cout << "|  Nhom 8:                                                                 |" << endl;
             cout << "|  Le Duc Anh            - 24730174                                        |" << endl;
             cout << "|  Nguyen Thi Chau Giang - 24730189                                        |" << endl;
             cout << "|  Nguyen Phu Nam        - 24730211                                        |" << endl;
