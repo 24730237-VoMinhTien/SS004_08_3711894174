@@ -10,8 +10,6 @@
 #define MAX_UNDER 25
 
 void gotoxy(int column, int line); // Hàm goto
-void getChar(int &huong);
-
 using namespace std;
 
 // Hàm thiết lập màu sắc
@@ -56,6 +54,7 @@ public:
         ran.length = 3;
         score = 0;
     }
+
     void start();
     void drawFrame();
     void createSnake();
@@ -190,20 +189,6 @@ void CONRAN::drawSnake()
 
 void CONRAN::move(int x, int y)
 {
-    // Thay đổi phần thân rắn
-    // Lưu phần cuối của thân rắn để xóa sau khi di chuyển
-    Point prevTail = ran.body[ran.length - 1];
-
-    // Dời thân rắn từ cuối về phía trước
-    for (int i = ran.length - 1; i > 0; i--)
-    {
-        ran.body[i] = ran.body[i - 1];
-    }
-
-    // Thay đổi phần đầu rắn
-    //  Cập nhật phần đầu rắn
-    ran.body[0].x = x;
-    ran.body[0].y = y;
 }
 
 bool CONRAN::isGameOver()
@@ -229,43 +214,5 @@ void CONRAN::eatFood()
 
 bool CONRAN::checkFood()
 {
-}
-// Điều hướng rắn
-void getChar(int &huong)
-{
-    if (_kbhit())
-    {
-        char c = _getch();
-        if (c == -32)
-        { // Kiểm tra phím mũi tên
-            c = _getch();
-            if (c == 72 && huong != 0)
-            {
-                huong = 1;
-            }
-            else if (c == 80 && huong != 1)
-            {
-                huong = 0;
-            }
-            else if (c == 75 && huong != 2)
-            {
-                huong = 3;
-            }
-            else if (c == 77 && huong != 3)
-            {
-                huong = 2;
-            }
-        }
-        else
-        {
-            if ((c == 'w') && huong != 0)
-                huong = 1;
-            else if ((c == 's') && huong != 1)
-                huong = 0;
-            else if ((c == 'a') && huong != 2)
-                huong = 3;
-            else if ((c == 'd') && huong != 3)
-                huong = 2;
-        }
-    }
+    return false;
 }
