@@ -148,7 +148,6 @@ void CONRAN::testDiChuyen()
     int y = ran.body[0].y;
     int huong = 2; // ban đầu đi sang phải
 
-    cout << x << " " << y << endl;
     while (true)
     {
          getChar(huong);
@@ -162,6 +161,21 @@ void CONRAN::testDiChuyen()
          else if (huong == 3)
              x--;
 
+    //Thay đổi phần thân rắn
+        // Xóa phần cuối của thân
+        gotoxy(ran.body[ran.length - 1].x, ran.body[ran.length - 1].y);
+        cout << " ";
+
+        // Lưu phần cuối của thân rắn để xóa sau khi di chuyển
+        Point prevTail = ran.body[ran.length - 1];
+
+        // Dời thân rắn từ cuối về phía trước
+        for (int i = ran.length - 1; i > 0; i--)
+        {
+            ran.body[i] = ran.body[i - 1];
+        }
+
+    //Thay đổi phần đầu rắn
         //Cập nhật phần đầu rắn
         ran.body[0].x = x;
         ran.body[0].y = y;
