@@ -52,7 +52,7 @@ private:
 
 public:
     CONRAN()
-    { // Hàm khởi tạo giá trị ban đầu
+    {
         ran.length = 3;
         score = 0;
     }
@@ -66,6 +66,8 @@ public:
     void eatFood();
     bool checkFood();
     void menu();
+    void Score();
+    void reset();
 };
 
 int main()
@@ -73,6 +75,13 @@ int main()
     CONRAN app;
     app.menu();
     return 0;
+}
+
+void CONRAN::reset()
+{
+    ran.length = 3;
+    createSnake();
+    score = 0;
 }
 
 void CONRAN::menu()
@@ -85,15 +94,16 @@ void CONRAN::menu()
         cout << "1. Bat Dau\n";
         cout << "2. Thong Tin\n";
         cout << "3. Thoat\n";
-        cout << "Lua chon: ";
+        cout << "Lua chon:\n";
         choice = _getch();
-
+        SetColor(7);
         switch (choice)
         {
         case '1':
             start();
             break;
         case '2':
+            SetColor(14);
             cout << "============================================================================" << endl;
             cout << "|                                                                          |" << endl;
             cout << "|                              HUONG DAN                                   |" << endl;
@@ -113,20 +123,70 @@ void CONRAN::menu()
             _getch();
             break;
         case '3':
+            SetColor(12);
             cout << "Thoat khoi chuong trinh.";
+            _getch();
             return;
         default:
+            SetColor(13);
             cout << "Khong hop le, vui long chon lai.\n";
             _getch();
             break;
         }
     } while (true);
 }
-
 void CONRAN::start()
 {
     system("cls");
     drawFrame();
+    createSnake();
+    drawSnake();
+    food.x = 40;
+    food.y = 16;
+    drawFood();
+
+    int x = ran.body[0].x;
+    int y = ran.body[0].y;
+    int huong = 2; // ban đầu đi sang phải
+
+    while (true)
+    {
+        getChar(huong);
+
+        if (huong == 0)
+            y++;
+        else if (huong == 1)
+            y--;
+        else if (huong == 2)
+            x++;
+        else if (huong == 3)
+            x--;
+
+        // Xóa phần cuối của thân
+        gotoxy(ran.body[ran.length - 1].x, ran.body[ran.length - 1].y);
+        cout << " ";
+
+        move(x, y);
+        drawSnake();
+        Sleep(100);
+        Score();
+        eatFood();
+
+        if (isGameOver())
+        {
+            gotoxy(50, 14);
+            SetColor(12); // Màu đỏ cho game over
+            cout << "Ket thuc!!!";
+            SetColor(7); // Reset màu
+            gotoxy(50, 15);
+            cout << "Diem la : " << score;
+            gotoxy(40, 16);
+            cout << "Nhan phim bat ky de tro ve menu.";
+            _getch();
+            reset();
+            break;
+        }
+    }
 }
 
 void CONRAN::drawFrame()
@@ -221,14 +281,36 @@ bool CONRAN::isGameOver()
 
 void CONRAN::drawFood()
 {
+    SetColor(14); // Vàng cho quả
+    gotoxy(food.x, food.y);
+    cout << (char)42;
+    SetColor(7); // Reset màu
 }
 
 void CONRAN::eatFood()
 {
+    if (ran.body[0].x == food.x && ran.body[0].y == food.y)
+    {
+        ran.length++;
+        do
+        {
+            food.x = rand() % (MAX_RIGHT - MAX_LEFT - 1) + MAX_LEFT + 1;
+            food.y = rand() % (MAX_UNDER - MAX_ABOVE - 1) + MAX_ABOVE + 1;
+        } while (checkFood());
+        drawFood();
+    }
 }
 
 bool CONRAN::checkFood()
 {
+    for (int i = 0; i < ran.length; ++i)
+    {
+        if (food.x == ran.body[i].x && food.y == ran.body[i].y)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 // Điều hướng rắn
 void getChar(int &huong)
@@ -267,5 +349,17 @@ void getChar(int &huong)
             else if ((c == 'd') && huong != 3)
                 huong = 2;
         }
+    }
+}
+
+void CONRAN::Score()
+{
+    if (ran.body[0].x == food.x && ran.body[0].y == food.y)
+    {
+        gotoxy(107, 2);
+        SetColor(13); // Màu tím cho điểm
+        score += 5;
+        cout << "Score: " << score;
+        SetColor(7); // Reset màu
     }
 }
