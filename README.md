@@ -15,8 +15,13 @@ Khi bắt đầu, bạn sẽ thấy giao diện **Menu** chính của trò chơi
 - Quay lại menu để chơi lại.
 
 #### Giao Diện Menu
-![Menu](img/menu.png)
+<p align="center">
+    <img src="img/menu.png" alt="Menu">
+</p>
+
 - **Chọn 1**: Bắt đầu trò chơi.
 - **Chọn 2**: Xem hướng dẫn và thông tin thành viên nhóm 8.
-    ![Thông Tin](img/info.png)
+        <p align="center">
+            <img src="img/info.png" alt="Thông Tin">
+        </p>
 - **Chọn 3**: Thoát khỏi trò chơi.
